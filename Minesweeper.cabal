@@ -23,6 +23,7 @@ executable Minesweeper
                         Block
                         Misc
                         Coord
+                        Random
   -- other-extensions:
   build-depends:        base >=4.14 && <4.15
   -- hs-source-dirs:

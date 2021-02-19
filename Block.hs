@@ -6,15 +6,15 @@ module Block (
 
 import Coord
 
-data Block = Block Coord Value Mine Visible SrndBlock deriving (Show)
+data Block = Block (Int,Int) Value Mine Visible SrndBlock deriving (Show)
 
 newtype Visible = Visible Bool deriving (Show) 
 newtype Mine = Mine Bool deriving (Show) 
 newtype Value = Value Int deriving (Show)
 newtype SrndBlock = SrndBlock [Block] deriving (Show)
 
-initBlock :: Coord -> Block
-initBlock c = Block c (Value 0) (Mine False) (Visible False) (SrndBlock [])
+initBlock :: (Int,Int) -> Block
+initBlock x = Block x (Value 0) (Mine False) (Visible False) (SrndBlock [])
 
-initBlocks :: [Coord] -> [Block]
+initBlocks :: [(Int,Int)] -> [Block]
 initBlocks = map initBlock

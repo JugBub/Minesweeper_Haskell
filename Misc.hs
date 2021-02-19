@@ -2,7 +2,8 @@ module Misc (
     askForInt,
     ioStrToInt,
     joinIoStr,
-    pairIoStr
+    pairIoStr,
+    listIsInt,
 )where
 
 import Data.Maybe
@@ -46,5 +47,10 @@ pairIoStr s1 s2 = do
     return cs
 
 checkIfInt :: String -> Int -> Int -> Bool
-checkIfInt s low high = isJust i && Just low < i && i < Just high
+checkIfInt s low high = isJust i && Just low <= i && i <= Just high
     where i = readMaybe s
+
+listIsInt :: [String] -> Int -> Int -> Bool
+listIsInt [x] low high = checkIfInt x low high 
+listIsInt (s:ss) low high = checkIfInt s low high && listIsInt ss low high
+

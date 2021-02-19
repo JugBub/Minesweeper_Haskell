@@ -2,6 +2,7 @@ module Main where
 
 import Board
 import Misc
+import Coord
 
 main :: IO ()
 main = do
@@ -16,15 +17,21 @@ main = do
 
 game :: Board -> String -> IO ()
 game board "Game Start" = do
-game board "Gaming" = do
-game board "Game Over" = do
+    tCoord <- askForCoordinate
+    let coord = lToCoord $ map read $ words tCoord
+    print 3
+    
+game board "Gaming" = do print 3
+game board "Game Over" = do print 3
 
 askForCoordinate :: IO String
 askForCoordinate = do
     putStrLn "Type the coordinate -- \"x y\""
-    tS <- getLine
-    let s = words tS
-    if length s == 2 && 
+    tSS <- getLine
+    let ss = words tSS
+    if length ss == 2 && listIsInt ss 0 maxBound
+    then return tSS
+    else askForCoordinate
 
 askForBoardType :: IO String  
 askForBoardType = askForInt 1 2 "Choose your type of board\n1 -- Square Board\n2 -- Rectangular Board"
