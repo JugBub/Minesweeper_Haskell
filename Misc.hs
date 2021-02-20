@@ -54,3 +54,7 @@ listIsInt :: [String] -> Int -> Int -> Bool
 listIsInt [x] low high = checkIfInt x low high 
 listIsInt (s:ss) low high = checkIfInt s low high && listIsInt ss low high
 
+intToBool :: Int -> Bool
+intToBool i
+    | even i = False
+    | odd  i = True
